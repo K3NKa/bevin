@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Bevien 🌹</title>
+    <style>
+        :root {
+            --rose: #ff6b9d;
+            --soft-pink: #fff0f5;
+            --deep-rose: #c94277;
+            --gold: #d4a373;
+            --text: #5a3e3e;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 100%);
+            font-family: 'Georgia', 'Palatino', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Floating rose petals */
+        .petal {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .petal:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .petal:nth-child(2) { left: 25%; animation-delay: 2s; }
+        .petal:nth-child(3) { left: 40%; animation-delay: 4s; }
+        .petal:nth-child(4) { left: 60%; animation-delay: 1s; }
+        .petal:nth-child(5) { left: 75%; animation-delay: 3s; }
+        .petal:nth-child(6) { left: 85%; animation-delay: 5s; }
+        
+        .container {
+            text-align: center;
+            padding: 3rem;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 107, 157, 0.1);
+        }
+        
+        .rose-icon { 
+            font-size: 3rem; 
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 { 
+            font-weight: 400; 
+            color: var(--rose);
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+        }
+        
+        p { 
+            color: var(--text); 
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .bunny-rose { font-size: 1.2rem; margin: 0.5rem; }
+        
+        .btn-group {
+            margin-top: 2.5rem;
+            position: relative;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        button {
+            padding: 14px 35px;
+            font-size: 1rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        #yesBtn {
+            background: linear-gradient(135deg, var(--rose) 0%, var(--deep-rose) 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        #yesBtn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+        }
+        
+        #noBtn {
+            position: absolute;
+            background: rgba(200, 200, 200, 0.3);
+            color: #888;
+            border: 1px solid rgba(200, 200, 200, 0.5);
+        }
+        
+        /* Success State */
+        #successPage { display: none; }
+        
+        .heart-icon {
+            font-size: 4rem;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+        
+        .success-list { 
+            text-align: left; 
+            margin-top: 2rem; 
+            padding: 1.5rem;
+            background: var(--soft-pink);
+            border-radius: 15px;
+            border-left: 4px solid var(--rose);
+        }
+        
+        .success-list div { 
+            margin-bottom: 15px; 
+            font-size: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+        
+        .success-list div::before {
+            content: "🌹";
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .closing {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: var(--rose);
+            font-weight: 500;
+        }
+        
+        /* Fade in effect */
+        .fade-in { 
+            animation: fadeIn 1s ease-in forwards; 
+        }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        .rose-divider {
+            margin: 1.5rem 0;
+            font-size: 1rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating petals -->
+    <div class="petal" style="top: 10%;">🌸</div>
+    <div class="petal" style="top: 30%;">🌸</div>
+    <div class="petal" style="top: 50%;">🌸</div>
+    <div class="petal" style="top: 70%;">🌸</div>
+    <div class="petal" style="top: 20%;">🌸</div>
+    <div class="petal" style="top: 60%;">🌸</div>
+    
+    <div id="questionPage" class="container">
+        <div class="rose-icon">🌹</div>
+        <h1>Hey Bevien</h1>
+        <div class="bunny-rose">🐰 ✨ 🐰</div>
+        <p>I wanted to ask you something that's been on my mind...</p>
+        <div class="rose-divider">🌹 ✿ 🌹</div>
+        <p style="font-size: 1.2rem; font-weight: 500; color: var(--rose);">Would you be my Valentine?</p>
+        
+        <div class="btn-group">
+            <button id="yesBtn" onclick="showSuccess()">Yes! 💕</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+    
+    <div id="successPage" class="container fade-in">
+        <div class="heart-icon">💝</div>
+        <h1>You made my day! 🌹</h1>
+        <div class="bunny-rose">🐰 💕 🐰</div>
+        
+        <div class="rose-divider">🌹 ✿ 🌹 ✿ 🌹</div>
+        
+        <p>A few things that make you so special, Bunny:</p>
+        
+        <div class="success-list">
+            <div>I lowkey feel hella lucky to have met you 🥰 and as much as I suck at sounding cute, I really want to let you know that you are appreciated and loved for being you, and that you are a blessing to everyone around you.</div>
+            <div>You are so caring, and you always know how to make me smile. I can't wait to celebrate this day with you, my cute little bunny! 🐰💕</div>
+        </div>
+        
+        <div class="rose-divider">🌹 ✿ 🌹</div>
+        
+        <p class="closing">Can't wait to see you soon! 💕</p>
+    </div>
+    
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+        
+        function showSuccess() {
+            document.getElementById('questionPage').style.display = 'none';
+            document.getElementById('successPage').style.display = 'block';
+            // Add extra rose petals on success
+            createConfettiRoses();
+        }
+        
+        function createConfettiRoses() {
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const rose = document.createElement('div');
+                    rose.textContent = '🌹';
+                    rose.style.position = 'fixed';
+                    rose.style.left = Math.random() * window.innerWidth + 'px';
+                    rose.style.top = '-50px';
+                    rose.style.fontSize = '2rem';
+                    rose.style.zIndex = '1000';
+                    rose.style.animation = 'fall 3s linear forwards';
+                    rose.style.pointerEvents = 'none';
+                    document.body.appendChild(rose);
+                    
+                    setTimeout(() => rose.remove(), 3000);
+                }, i * 100);
+            }
+        }
+        
+        // Add fall animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
