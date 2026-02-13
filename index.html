@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Bevin 🌹</title>
+    <title>For Bevien 🌹</title>
     <style>
         :root {
             --rose: #ff6b9d;
@@ -13,26 +13,31 @@
             --text: #5a3e3e;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 100%);
             font-family: 'Georgia', 'Palatino', serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            margin: 0;
             color: var(--text);
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            padding: 20px;
         }
         
         /* Floating rose petals */
         .petal {
-            position: absolute;
+            position: fixed;
             font-size: 1.5rem;
             opacity: 0.3;
             animation: float 15s infinite ease-in-out;
             pointer-events: none;
+            z-index: 1;
         }
         
         @keyframes float {
@@ -40,17 +45,26 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
         
-        .petal:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .petal:nth-child(2) { left: 25%; animation-delay: 2s; }
-        .petal:nth-child(3) { left: 40%; animation-delay: 4s; }
-        .petal:nth-child(4) { left: 60%; animation-delay: 1s; }
-        .petal:nth-child(5) { left: 75%; animation-delay: 3s; }
-        .petal:nth-child(6) { left: 85%; animation-delay: 5s; }
+        .petal:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
+        .petal:nth-child(2) { left: 25%; top: 30%; animation-delay: 2s; }
+        .petal:nth-child(3) { left: 40%; top: 50%; animation-delay: 4s; }
+        .petal:nth-child(4) { left: 60%; top: 70%; animation-delay: 1s; }
+        .petal:nth-child(5) { left: 75%; top: 20%; animation-delay: 3s; }
+        .petal:nth-child(6) { left: 85%; top: 60%; animation-delay: 5s; }
+        
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
         
         .container {
             text-align: center;
-            padding: 3rem;
+            padding: 2.5rem 1.5rem;
             max-width: 450px;
+            width: 100%;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
@@ -74,14 +88,14 @@
             font-weight: 400; 
             color: var(--rose);
             margin-bottom: 0.5rem;
-            font-size: 2rem;
+            font-size: 1.8rem;
             letter-spacing: 0.5px;
         }
         
         p { 
             color: var(--text); 
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-style: italic;
         }
         
@@ -90,10 +104,10 @@
         .btn-group {
             margin-top: 2.5rem;
             position: relative;
-            height: 60px;
+            min-height: 120px;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            align-items: flex-start;
         }
         
         button {
@@ -106,15 +120,18 @@
             transition: all 0.3s ease;
             font-weight: 500;
             letter-spacing: 0.5px;
+            touch-action: manipulation;
         }
         
         #yesBtn {
             background: linear-gradient(135deg, var(--rose) 0%, var(--deep-rose) 100%);
             color: white;
             box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            position: relative;
+            z-index: 100;
         }
         
-        #yesBtn:hover { 
+        #yesBtn:hover, #yesBtn:active { 
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
         }
@@ -124,13 +141,17 @@
             background: rgba(200, 200, 200, 0.3);
             color: #888;
             border: 1px solid rgba(200, 200, 200, 0.5);
+            left: 50%;
+            top: 70px;
+            transform: translateX(-50%);
+            transition: all 0.3s ease;
         }
         
         /* Success State */
         #successPage { display: none; }
         
         .heart-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             animation: heartbeat 1.5s infinite;
             margin-bottom: 1rem;
         }
@@ -152,7 +173,7 @@
         
         .success-list div { 
             margin-bottom: 15px; 
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text);
             display: flex;
             align-items: flex-start;
@@ -165,6 +186,10 @@
             font-size: 1.2rem;
             flex-shrink: 0;
             margin-top: 2px;
+        }
+        
+        .success-list div:last-child {
+            margin-bottom: 0;
         }
         
         .closing {
@@ -189,63 +214,145 @@
             font-size: 1rem;
             opacity: 0.5;
         }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 2rem 1.2rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            p {
+                font-size: 0.95rem;
+            }
+            
+            .rose-icon, .heart-icon {
+                font-size: 2.5rem;
+            }
+            
+            button {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+            
+            .success-list {
+                padding: 1.2rem;
+            }
+            
+            .success-list div {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Floating petals -->
-    <div class="petal" style="top: 10%;">🌸</div>
-    <div class="petal" style="top: 30%;">🌸</div>
-    <div class="petal" style="top: 50%;">🌸</div>
-    <div class="petal" style="top: 70%;">🌸</div>
-    <div class="petal" style="top: 20%;">🌸</div>
-    <div class="petal" style="top: 60%;">🌸</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌸</div>
     
-    <div id="questionPage" class="container">
-        <div class="rose-icon">🌹</div>
-        <h1>Hey Bevin</h1>
-        <div class="bunny-rose">🐰 ✨ 🐰</div>
-        <p>I wanted to ask you something that's been on my mind...</p>
-        <div class="rose-divider">🌹 ✿ 🌹</div>
-        <p style="font-size: 1.2rem; font-weight: 500; color: var(--rose);">Would you be my Valentine?</p>
-        
-        <div class="btn-group">
-            <button id="yesBtn" onclick="showSuccess()">Yes! 💕</button>
-            <button id="noBtn" onmouseover="moveButton()">No</button>
+    <div class="wrapper">
+        <div id="questionPage" class="container">
+            <div class="rose-icon">🌹</div>
+            <h1>Hey Bevien</h1>
+            <div class="bunny-rose">🐰 ✨ 🐰</div>
+            <p>I wanted to ask you something that's been on my mind...</p>
+            <div class="rose-divider">🌹 ✿ 🌹</div>
+            <p style="font-size: 1.2rem; font-weight: 500; color: var(--rose);">Would you be my Valentine?</p>
+            
+            <div class="btn-group">
+                <button id="yesBtn" onclick="showSuccess()">Yes! 💕</button>
+                <button id="noBtn" ontouchstart="moveButton(event)" onmouseover="moveButton(event)">No</button>
+            </div>
         </div>
     </div>
     
-    <div id="successPage" class="container fade-in">
-        <div class="heart-icon">💝</div>
-        <h1>You made my day! 🌹</h1>
-        <div class="bunny-rose">🐰 💕 🐰</div>
-        
-        <div class="rose-divider">🌹 ✿ 🌹 ✿ 🌹</div>
-        
-        <p>A few things that make you so special, Bunny:</p>
-        
-        <div class="success-list">
-            <div>I lowkey feel hella lucky to have met you 🥰 and as much as I suck at sounding cute, I really want to let you know that you are appreciated and loved for being you, and that you are a blessing to everyone around you.</div>
-            <div>You are so caring, and you always know how to make me smile. I can't wait to celebrate this day with you, my cute little bunny! 🐰💕</div>
+    <div class="wrapper" id="successWrapper" style="display: none;">
+        <div id="successPage" class="container fade-in">
+            <div class="heart-icon">💝</div>
+            <h1>You made my day! 🌹</h1>
+            <div class="bunny-rose">🐰 💕 🐰</div>
+            
+            <div class="rose-divider">🌹 ✿ 🌹 ✿ 🌹</div>
+            
+            <p>A few things that make you so special, Bunny:</p>
+            
+            <div class="success-list">
+                <div>I lowkey feel hella lucky to have met you 🥰 and as much as I suck at sounding cute, I really want to let you know that you are appreciated and loved for being you, and that you are a blessing to everyone around you.</div>
+                <div>You are so caring, and you always know how to make me smile. I can't wait to celebrate this day with you, my cute little bunny! 🐰💕</div>
+            </div>
+            
+            <div class="rose-divider">🌹 ✿ 🌹</div>
+            
+            <p class="closing">Can't wait to see you soon! 💕</p>
         </div>
-        
-        <div class="rose-divider">🌹 ✿ 🌹</div>
-        
-        <p class="closing">Can't wait to see you soon! 💕</p>
     </div>
     
     <script>
-        function moveButton() {
+        let moveCount = 0;
+        const container = document.querySelector('.container');
+        
+        function moveButton(event) {
+            event.preventDefault();
             const noBtn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 60);
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
+            const btnGroup = document.querySelector('.btn-group');
+            
+            moveCount++;
+            
+            // Get container dimensions for boundaries
+            const containerRect = container.getBoundingClientRect();
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            // Calculate safe movement area (within button group)
+            const maxX = btnGroup.offsetWidth - btnWidth;
+            const maxY = btnGroup.offsetHeight - btnHeight;
+            
+            // Generate random position within bounds
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            
+            // Make it jump further away as attempts increase
+            if (moveCount > 3) {
+                // After 3 attempts, make it jump to more extreme positions
+                newX = Math.random() < 0.5 ? 0 : maxX;
+                newY = Math.random() * maxY;
+            }
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            // Add a playful message after multiple attempts
+            if (moveCount === 5) {
+                noBtn.textContent = "Nice try! 😏";
+            }
+            if (moveCount === 8) {
+                noBtn.textContent = "Still no! 😘";
+            }
+            if (moveCount === 12) {
+                noBtn.textContent = "Just say yes! 💕";
+            }
         }
         
         function showSuccess() {
-            document.getElementById('questionPage').style.display = 'none';
+            document.querySelector('.wrapper').style.display = 'none';
+            document.getElementById('successWrapper').style.display = 'flex';
             document.getElementById('successPage').style.display = 'block';
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
             // Add extra rose petals on success
             createConfettiRoses();
         }
@@ -280,6 +387,16 @@
             }
         `;
         document.head.appendChild(style);
+        
+        // Prevent zoom on double-tap for better mobile UX
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
